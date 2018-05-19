@@ -1,31 +1,23 @@
 package cg.main;
+
 import java.awt.EventQueue;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Canvas;
 import javax.swing.JRadioButton;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-
 import javax.swing.border.LineBorder;
-
-import cg.design.formas;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import cg.design.formas;
+
 
 public class FrameCG extends JFrame {
 
@@ -34,13 +26,29 @@ public class FrameCG extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-    int WIDTH = 526;
-    int HEIGHT = 454;
-    Canvas canvas;
+	private int WIDTH = 526;
+	private int HEIGHT = 454;
+    private Canvas canvas;
     private JTextField txtX1;
     private JTextField txtY1;
     private JTextField txtX2;
     private JTextField txtY2;
+    private JTextField txtRaio;
+    private JLabel lblX1;
+    private JLabel lblX2;
+    private JLabel lblRaio;
+    private JLabel lblY1;
+    private JLabel lblY2;
+    private JRadioButton rbLinha;
+    private JRadioButton rbTriangulo;
+    private JRadioButton rdbtnRetanguloBresenham;
+    private JRadioButton rbCirculo;
+    private ButtonGroup group;
+    private JButton btnLimpar;
+    private JButton btnPlotar;
+    private JComboBox<String> cbxMetodo;
+    private JLabel lblMetodo;
+    
     
 	/**
 	 * Launch the application.
@@ -59,87 +67,84 @@ public class FrameCG extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Construtor que chama o método para iniciar os componentes
 	 */
 	public FrameCG() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 845, 474);
-		contentPane = new JPanel();
-		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		JLabel lblX = new JLabel("X1: ");
-		lblX.setBounds(544, 168, 61, 16);
-		contentPane.add(lblX);
+		initComponents();
+		acaoExecutada();
 		
-		JLabel lblY = new JLabel("Y1: ");
-		lblY.setBounds(544, 196, 61, 16);
-		contentPane.add(lblY);
-		
-		JLabel lblX_1 = new JLabel("X2: ");
-		lblX_1.setBounds(544, 222, 61, 16);
-		contentPane.add(lblX_1);
-		
-		JLabel lblY_1 = new JLabel("Y2:");
-		lblY_1.setBounds(544, 249, 61, 16);
-		contentPane.add(lblY_1);
-		
-		txtX1 = new JTextField();
-		txtX1.setBounds(566, 163, 130, 26);
-		contentPane.add(txtX1);
-		txtX1.setColumns(10);
-		
-		txtY1 = new JTextField();
-		txtY1.setColumns(10);
-		txtY1.setBounds(566, 191, 130, 26);
-		contentPane.add(txtY1);
-		
-		txtX2 = new JTextField();
-		txtX2.setColumns(10);
-		txtX2.setBounds(566, 217, 130, 26);
-		contentPane.add(txtX2);
-		
-		txtY2 = new JTextField();
-		txtY2.setColumns(10);
-		txtY2.setBounds(566, 244, 130, 26);
-		contentPane.add(txtY2);
-		
-		Canvas canvas = new Canvas();
-		canvas.setBackground(new Color(0, 0, 0));
-		canvas.setBounds(0, 0, 526, 454);
-		canvas.setVisible(true);
-		contentPane.add(canvas);
-		
-		
-		JRadioButton rbLinha = new JRadioButton("Linha DDA", false);
+	}
+	
+	/*
+	 * Ação executada pelos componentes
+	 */
+	
+	 private void acaoExecutada() {
+		 
 		rbLinha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Graphics g = canvas.getGraphics();
-				g.setColor(Color.GREEN);
+				lblX1.setVisible(false);
+				lblX2.setVisible(false);
+				lblY1.setVisible(false);
+				lblY2.setVisible(false);
+				lblRaio.setVisible(false);
 				
-				cg.design.formas.plotar(Float.parseFloat(txtX1.getText()), Float.parseFloat(txtX2.getText()), Float.parseFloat(txtY1.getText()), Float.parseFloat(txtY2.getText()), g);
+				txtX1.setVisible(false);
+				txtX2.setVisible(false);
+				txtY1.setVisible(false);
+				txtY2.setVisible(false);
+				txtRaio.setVisible(false);
+				
+				txtX1.setText("");
+				txtX2.setText("");
+				txtY1.setText("");
+				txtY2.setText("");
+				txtRaio.setText("");
+				
+				lblX1.setVisible(true);
+				lblX2.setVisible(true);
+				lblY1.setVisible(true);
+				lblY2.setVisible(true);
+				
+				txtX1.setVisible(true);
+				txtX2.setVisible(true);
+				txtY1.setVisible(true);
+				txtY2.setVisible(true);
+				
+				
+			
+		
+			}
+		});
+		
+		rbCirculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				lblY1.setVisible(false);
+				lblY2.setVisible(false);
+				lblRaio.setVisible(false);
+				
+				txtY1.setVisible(false);
+				txtY2.setVisible(false);
+				lblRaio.setVisible(false);
+				
+				txtX1.setText("");
+				txtX2.setText("");
+				txtRaio.setText("");
+				
+				lblX1.setVisible(true);
+				lblX2.setVisible(true);
+				lblRaio.setVisible(true);
+				
+				txtX1.setVisible(true);
+				txtX2.setVisible(true);
+				txtRaio.setVisible(true);
 				
 			}
 		});
-		rbLinha.setBounds(532, 45, 141, 23);
-		contentPane.add(rbLinha);
 		
-		JRadioButton rbTriangulo = new JRadioButton("Triangulo Bresenham", false);
-		rbTriangulo.setBounds(532, 80, 164, 23);
-		contentPane.add(rbTriangulo);
-		
-		JRadioButton rdbtnRetanguloBresenham = new JRadioButton("Retangulo Bresenham", false);
-		rdbtnRetanguloBresenham.setBounds(532, 115, 177, 23);
-		contentPane.add(rdbtnRetanguloBresenham);
-		
-		ButtonGroup group = new ButtonGroup();
-		group.add(rbLinha);
-		group.add(rbTriangulo);
-		group.add(rdbtnRetanguloBresenham);
-		
-		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Graphics g = canvas.getGraphics();
@@ -155,23 +160,148 @@ public class FrameCG extends JFrame {
 				group.clearSelection();
 			}
 		});
+		
+		btnPlotar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(rbCirculo.isSelected()) {
+					Graphics g = canvas.getGraphics();
+					g.setColor(Color.GREEN);
+					
+					
+					formas.desenhaCirculo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()), Integer.parseInt(txtRaio.getText()), g);
+					
+				} else if(rbLinha.isSelected()){
+						Graphics g = canvas.getGraphics();
+						g.setColor(Color.GREEN);
+						
+						formas.desenhaLinha(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()), Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
+						
+						
+					} else if(rbTriangulo.isSelected()){
+							
+						} else if(rdbtnRetanguloBresenham.isSelected()){
+							 
+								
+							}
+						}
+					
+		});
+	} 
+	
+	/*
+	 * Cria o frame e os componentes na tela
+	 */
+	private void initComponents() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 881, 496);
+		contentPane = new JPanel();
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblX1 = new JLabel("X1: ");
+		lblX1.setBounds(544, 223, 61, 16);
+		contentPane.add(lblX1);
+		lblX1.setVisible(false);
+		
+		lblY1 = new JLabel("Y1: ");
+		lblY1.setBounds(544, 256, 61, 16);
+		contentPane.add(lblY1);
+		lblY1.setVisible(false);
+		
+		lblX2 = new JLabel("X2: ");
+		lblX2.setBounds(702, 223, 61, 16);
+		contentPane.add(lblX2);
+		lblX2.setVisible(false);
+		
+		lblY2 = new JLabel("Y2:");
+		lblY2.setBounds(702, 256, 61, 16);
+		contentPane.add(lblY2);
+		lblY2.setVisible(false);
+		
+		lblRaio = new JLabel("Raio: ");
+		lblRaio.setBounds(534, 256, 61, 16);
+		contentPane.add(lblRaio);
+		lblRaio.setVisible(false);
+		
+		txtX1 = new JTextField();
+		txtX1.setBounds(566, 218, 130, 26);
+		contentPane.add(txtX1);
+		txtX1.setColumns(10);
+		txtX1.setVisible(false);
+		
+		txtY1 = new JTextField();
+		txtY1.setColumns(10);
+		txtY1.setBounds(566, 251, 130, 26);
+		contentPane.add(txtY1);
+		txtY1.setVisible(false);
+		
+		txtX2 = new JTextField();
+		txtX2.setColumns(10);
+		txtX2.setBounds(724, 218, 130, 26);
+		contentPane.add(txtX2);
+		txtX2.setVisible(false);
+		
+		txtY2 = new JTextField();
+		txtY2.setColumns(10);
+		txtY2.setBounds(724, 251, 130, 26);
+		contentPane.add(txtY2);
+		txtY2.setVisible(false);
+		
+		txtRaio = new JTextField();
+		txtRaio.setColumns(10);
+		txtRaio.setBounds(566, 251, 130, 26);
+		contentPane.add(txtRaio);
+		txtRaio.setVisible(false);
+		
+		canvas = new Canvas();
+		canvas.setBackground(new Color(0, 0, 0));
+		canvas.setBounds(0, 0, WIDTH, HEIGHT);
+		canvas.setVisible(true);
+		contentPane.add(canvas);
+		
+		rbLinha = new JRadioButton("Linha", false);
+		rbLinha.setBounds(532, 45, 141, 23);
+		contentPane.add(rbLinha);
+		
+		rbTriangulo = new JRadioButton("Triângulo", false);
+		rbTriangulo.setBounds(532, 80, 164, 23);
+		contentPane.add(rbTriangulo);
+		
+		rdbtnRetanguloBresenham = new JRadioButton("Retangulo", false);
+		rdbtnRetanguloBresenham.setBounds(532, 115, 177, 23);
+		contentPane.add(rdbtnRetanguloBresenham);
+		
+		rbCirculo = new JRadioButton("Circulo", false);
+		rbCirculo.setBounds(532, 152, 177, 23);
+		contentPane.add(rbCirculo);
+		
+		group = new ButtonGroup();
+		group.add(rbLinha);
+		group.add(rbTriangulo);
+		group.add(rdbtnRetanguloBresenham);
+		group.add(rbCirculo);
+		
+		btnLimpar = new JButton("Limpar");
 		btnLimpar.setBounds(532, 390, 152, 47);
 		contentPane.add(btnLimpar);
 		
-		JButton btnPlotar = new JButton("Vai!");
+		btnPlotar = new JButton("Vai!");
 		btnPlotar.setBounds(687, 390, 152, 47);
 		contentPane.add(btnPlotar);
 		
-		JComboBox cbxMetodo = new JComboBox();
-		cbxMetodo.setModel(new DefaultComboBoxModel(new String[] {"Selecione", "Mouse", "Teclado"}));
+		cbxMetodo = new JComboBox<String>();
+		cbxMetodo.setModel(new DefaultComboBoxModel<String>(new String[] {"Selecione", "Mouse", "Teclado"}));
 		cbxMetodo.setToolTipText("");
 		cbxMetodo.setBounds(665, 6, 130, 27);
 		contentPane.add(cbxMetodo);
 		
-		JLabel lblMetodo = new JLabel("Selecione o método:");
+		lblMetodo = new JLabel("Selecione o método:");
 		lblMetodo.setBounds(532, 10, 141, 16);
-		contentPane.add(lblMetodo);
-		
-		
+		contentPane.add(lblMetodo);	
 	}
+
+	
+	
+	
 }
