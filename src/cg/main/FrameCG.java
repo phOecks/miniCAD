@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -82,111 +83,175 @@ public class FrameCG extends JFrame {
 	
 	 private void acaoExecutada() {
 		 
+		 cbxMetodo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 Object qualMetodo = cbxMetodo.getSelectedItem();
+				 
+				 if(qualMetodo.toString()=="Mouse") {
+					 	lblX1.setVisible(false);
+						lblX2.setVisible(false);
+						lblY1.setVisible(false);
+						lblY2.setVisible(false);
+						lblRaio.setVisible(false);
+						
+						txtX1.setVisible(false);
+						txtX2.setVisible(false);
+						txtY1.setVisible(false);
+						txtY2.setVisible(false);
+						txtRaio.setVisible(false);
+				 }
+			}
+		 });
+ 
 		rbLinha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				lblX1.setVisible(false);
-				lblX2.setVisible(false);
-				lblY1.setVisible(false);
-				lblY2.setVisible(false);
-				lblRaio.setVisible(false);
-				
-				txtX1.setVisible(false);
-				txtX2.setVisible(false);
-				txtY1.setVisible(false);
-				txtY2.setVisible(false);
-				txtRaio.setVisible(false);
-				
-				txtX1.setText("");
-				txtX2.setText("");
-				txtY1.setText("");
-				txtY2.setText("");
-				txtRaio.setText("");
-				
-				lblX1.setVisible(true);
-				lblX2.setVisible(true);
-				lblY1.setVisible(true);
-				lblY2.setVisible(true);
-				
-				txtX1.setVisible(true);
-				txtX2.setVisible(true);
-				txtY1.setVisible(true);
-				txtY2.setVisible(true);
-				
-				
-			
-		
+
+				Object qualMetodo = cbxMetodo.getSelectedItem();
+
+				if (qualMetodo.toString() == "Selecione") {
+					JOptionPane.showMessageDialog(null,
+							"Por favor, selecione o método de entrada:\n\nMOUSE ou TECLADO");
+
+				} else if (qualMetodo.toString() == "Mouse") {
+					lblX1.setVisible(false);
+					lblX2.setVisible(false);
+					lblY1.setVisible(false);
+					lblY2.setVisible(false);
+					lblRaio.setVisible(false);
+
+					txtX1.setVisible(false);
+					txtX2.setVisible(false);
+					txtY1.setVisible(false);
+					txtY2.setVisible(false);
+					txtRaio.setVisible(false);
+				} else {
+					lblX1.setVisible(false);
+					lblX2.setVisible(false);
+					lblY1.setVisible(false);
+					lblY2.setVisible(false);
+					lblRaio.setVisible(false);
+
+					txtX1.setVisible(false);
+					txtX2.setVisible(false);
+					txtY1.setVisible(false);
+					txtY2.setVisible(false);
+					txtRaio.setVisible(false);
+
+					txtX1.setText("");
+					txtX2.setText("");
+					txtY1.setText("");
+					txtY2.setText("");
+					txtRaio.setText("");
+
+					lblX1.setVisible(true);
+					lblX2.setVisible(true);
+					lblY1.setVisible(true);
+					lblY2.setVisible(true);
+
+					txtX1.setVisible(true);
+					txtX2.setVisible(true);
+					txtY1.setVisible(true);
+					txtY2.setVisible(true);
+				}
 			}
 		});
-		
+
 		rbCirculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				lblY1.setVisible(false);
-				lblY2.setVisible(false);
-				lblRaio.setVisible(false);
-				
-				txtY1.setVisible(false);
-				txtY2.setVisible(false);
-				lblRaio.setVisible(false);
-				
-				txtX1.setText("");
-				txtX2.setText("");
-				txtRaio.setText("");
-				
-				lblX1.setVisible(true);
-				lblX2.setVisible(true);
-				lblRaio.setVisible(true);
-				
-				txtX1.setVisible(true);
-				txtX2.setVisible(true);
-				txtRaio.setVisible(true);
-				
+
+				Object qualMetodo = cbxMetodo.getSelectedItem();
+
+				if (qualMetodo.toString() == "Selecione") {
+					JOptionPane.showMessageDialog(null,
+							"Por favor, selecione o método de entrada:\n\nMOUSE ou TECLADO");
+
+				} else if (qualMetodo.toString() == "Mouse") {
+					lblX1.setVisible(false);
+					lblX2.setVisible(false);
+					lblY1.setVisible(false);
+					lblY2.setVisible(false);
+					lblRaio.setVisible(false);
+
+					txtX1.setVisible(false);
+					txtX2.setVisible(false);
+					txtY1.setVisible(false);
+					txtY2.setVisible(false);
+					txtRaio.setVisible(false);
+				} else {
+
+					lblY1.setVisible(false);
+					lblY2.setVisible(false);
+					lblRaio.setVisible(false);
+
+					txtY1.setVisible(false);
+					txtY2.setVisible(false);
+					lblRaio.setVisible(false);
+
+					txtX1.setText("");
+					txtX2.setText("");
+					txtRaio.setText("");
+
+					lblX1.setVisible(true);
+					lblX2.setVisible(true);
+					lblRaio.setVisible(true);
+
+					txtX1.setVisible(true);
+					txtX2.setVisible(true);
+					txtRaio.setVisible(true);
+				}
 			}
 		});
-		
+
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Graphics g = canvas.getGraphics();
 				g.setColor(Color.BLACK);
 				g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 				g.dispose();
-				
+
 				txtX1.setText("");
 				txtX2.setText("");
 				txtY1.setText("");
 				txtY2.setText("");
-				
+
 				group.clearSelection();
 			}
 		});
-		
+
 		btnPlotar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(rbCirculo.isSelected()) {
-					Graphics g = canvas.getGraphics();
-					g.setColor(Color.GREEN);
-					
-					
-					formas.desenhaCirculo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()), Integer.parseInt(txtRaio.getText()), g);
-					
-				} else if(rbLinha.isSelected()){
+
+				Object qualMetodo = cbxMetodo.getSelectedItem();
+
+				if (qualMetodo.toString() == "Selecione") {
+					JOptionPane.showMessageDialog(null,
+							"Por favor, selecione o método de entrada:\n\nMOUSE ou TECLADO");
+
+				} else {
+
+					if (rbCirculo.isSelected()) {
 						Graphics g = canvas.getGraphics();
 						g.setColor(Color.GREEN);
-						
-						formas.desenhaLinha(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()), Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
-						
-						
-					} else if(rbTriangulo.isSelected()){
-							
-						} else if(rdbtnRetanguloBresenham.isSelected()){
-							 
-								
-							}
-						}
-					
+
+						formas.desenhaCirculo(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
+								Integer.parseInt(txtRaio.getText()), g);
+
+					} else if (rbLinha.isSelected()) {
+						Graphics g = canvas.getGraphics();
+						g.setColor(Color.GREEN);
+
+						formas.desenhaLinha(Integer.parseInt(txtX1.getText()), Integer.parseInt(txtX2.getText()),
+								Integer.parseInt(txtY1.getText()), Integer.parseInt(txtY2.getText()), g);
+
+					} else if (rbTriangulo.isSelected()) {
+
+					} else if (rdbtnRetanguloBresenham.isSelected()) {
+
+					}
+				}
+			}
 		});
-	} 
+	}
 	
 	/*
 	 * Cria o frame e os componentes na tela
