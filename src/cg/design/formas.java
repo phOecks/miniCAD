@@ -59,13 +59,13 @@ public class formas {
 		do {
 			
 			g.drawLine(Math.round(centerX + x), Math.round(centerY + y), Math.round(centerX + x), Math.round(centerY + y));
+			g.drawLine(Math.round(centerX - x), Math.round(centerY + y), Math.round(centerX - x), Math.round(centerY + y));
+			g.drawLine(Math.round(centerX + x), Math.round(centerY - y), Math.round(centerX + x), Math.round(centerY - y));
+			g.drawLine(Math.round(centerX - x), Math.round(centerY - y), Math.round(centerX - x), Math.round(centerY - y));
 			g.drawLine(Math.round(centerX + y), Math.round(centerY + x), Math.round(centerX + y), Math.round(centerY + x));
 			g.drawLine(Math.round(centerX - y), Math.round(centerY + x), Math.round(centerX - y), Math.round(centerY + x));
-			g.drawLine(Math.round(centerX - x), Math.round(centerY + y), Math.round(centerX - x), Math.round(centerY + y));
-			g.drawLine(Math.round(centerX - x), Math.round(centerY - y), Math.round(centerX - x), Math.round(centerY - y));
-			g.drawLine(Math.round(centerX - y), Math.round(centerY - x), Math.round(centerX - y), Math.round(centerY - x));
 			g.drawLine(Math.round(centerX + y), Math.round(centerY - x), Math.round(centerX + y), Math.round(centerY - x));
-			g.drawLine(Math.round(centerX + x), Math.round(centerY - y), Math.round(centerX + x), Math.round(centerY - y));
+			g.drawLine(Math.round(centerX - y), Math.round(centerY - x), Math.round(centerX - y), Math.round(centerY - x));
 			
 			if (p < 0) {
 				p += 2 * x + 1;
